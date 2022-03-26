@@ -1,0 +1,26 @@
+.date-card {
+  border: 2px solid #fff;
+  padding: 20px;
+  /* background: #333333;
+   */
+
+  color: #fff;
+  border-radius: 0.25rem;
+  text-align: center;
+}
+
+.date-card .month {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.date-card .day {
+  font-weight: bolder;
+  font-size: 1.3rem;
+}
+
+.display-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

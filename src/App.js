@@ -1,23 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import Expenses from "./components/Expenses";
+import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+const dummyExpense = [];
 
 function App() {
+  const [expenses, setExpenses] = useState(dummyExpense);
+
+  const getNewExpenseHandler = (newExpense) => {
+    setExpenses((oldExpense) => {
+      return [newExpense, ...oldExpense];
+    });
+  };
+
+  const deleteItemHandler = (item) => {
+    const filteredItems = expenses.filter((expense) => item.id !== expense.id);
+
+    setExpenses(filteredItems);
+
+    console.log(expenses);
+  };
+
+  const clearAllHandler = () => {
+    if (expenses.length > 0) {
+      toast.success("All Expenses are Successfully Cleared!");
+      setExpenses(dummyExpense);
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Expenses
+        expenses={expenses}
+        onGetNewExpense={getNewExpenseHandler}
+        onDelete={deleteItemHandler}
+        onClear={clearAllHandler}
+      />
+      <ToastContainer />
     </div>
   );
 }
